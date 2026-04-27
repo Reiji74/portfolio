@@ -6,6 +6,7 @@ import { useState } from "react"
 import { ArrowLeft, Copy } from "lucide-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 type Project = {
   title: string
@@ -44,7 +45,7 @@ const projects: Record<string, Project> = {
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const project = projects[params.id] ?? projects["fscp"]
 
-  const [tab, setTab] = useState<"overview" | "pinout" | "wiring" | "code" | "files">("overview")
+  const [tab, setTab] = useState<"overview" | "pinout" | "code" | "files">("overview")
 
   function copyCode() {
     navigator.clipboard.writeText(codeExample)
@@ -60,27 +61,26 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <ArrowLeft className="h-4 w-4 mr-2" /> Back
           </Link>
 
-          <nav className="flex items-center gap-8 text-sm">
-            <button onClick={() => setTab("overview")} className={`hover:text-primary ${tab === "overview" ? "text-primary" : "text-muted-foreground"}`}>
-              Overview
-            </button>
+          <div className="flex items-center gap-6">
+            <nav className="flex items-center gap-8 text-sm">
+              <button onClick={() => setTab("overview")} className={`hover:text-primary ${tab === "overview" ? "text-primary" : "text-muted-foreground"}`}>
+                Overview
+              </button>
 
-            <button onClick={() => setTab("pinout")} className={`hover:text-primary ${tab === "pinout" ? "text-primary" : "text-muted-foreground"}`}>
-              Pinout
-            </button>
+              <button onClick={() => setTab("pinout")} className={`hover:text-primary ${tab === "pinout" ? "text-primary" : "text-muted-foreground"}`}>
+                Wiring / Pinout
+              </button>
 
-            <button onClick={() => setTab("wiring")} className={`hover:text-primary ${tab === "wiring" ? "text-primary" : "text-muted-foreground"}`}>
-              Wiring
-            </button>
+              <button onClick={() => setTab("code")} className={`hover:text-primary ${tab === "code" ? "text-primary" : "text-muted-foreground"}`}>
+                Code
+              </button>
 
-            <button onClick={() => setTab("code")} className={`hover:text-primary ${tab === "code" ? "text-primary" : "text-muted-foreground"}`}>
-              Code
-            </button>
-
-            <button onClick={() => setTab("files")} className={`hover:text-primary ${tab === "files" ? "text-primary" : "text-muted-foreground"}`}>
-              Files
-            </button>
-          </nav>
+              <button onClick={() => setTab("files")} className={`hover:text-primary ${tab === "files" ? "text-primary" : "text-muted-foreground"}`}>
+                Files
+              </button>
+            </nav>
+            <ThemeToggle />
+          </div>
 
         </div>
       </header>
@@ -134,12 +134,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 className="object-cover w-full"
               />
             </div>
-          </section>
-        )}
 
-        {tab === "wiring" && (
-          <section className="space-y-6 max-w-5xl">
-            <h2 className="text-xl font-semibold">Circuit Wiring</h2>
+            <div className="pt-8 space-y-6">
+              <h2 className="text-xl font-semibold">Circuit Wiring</h2>
 
             <div className="border border-border rounded-lg overflow-hidden">
               <Image
@@ -154,6 +151,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <p className="text-muted-foreground">
               The wiring diagram illustrates how sensors and relays are connected to the ESP32 GPIO pins.
             </p>
+            </div>
           </section>
         )}
 

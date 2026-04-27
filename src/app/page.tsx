@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Github, ExternalLink, Cpu, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const projects = [
   {
@@ -56,9 +57,12 @@ export default function Home() {
             </a>
           </nav>
 
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-            GitHub
-          </Button>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+              GitHub
+            </Button>
+          </div>
 
         </div>
       </header>
@@ -69,7 +73,7 @@ export default function Home() {
           <div className="space-y-6 max-w-xl">
             <p className="text-sm text-primary font-medium tracking-wider">Embedded Systems Portfolio</p>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              ESP32 Projects by <span className="text-primary">Your Name</span>
+              ESP32 Projects by <span className="text-primary">Danish Iman</span>
             </h1>
             <p className="text-muted-foreground text-lg">
               I build IoT and embedded systems using ESP32. This dashboard showcases hardware builds, firmware experiments, and connected applications.
