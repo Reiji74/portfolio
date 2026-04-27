@@ -14,24 +14,92 @@ type Project = {
   image: string
 }
 
-const codeExample = `#include <WiFi.h>
+const codeExample = `#include <Arduino.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 
-const char* ssid = "your_wifi";
-const char* password = "your_password";
+// ---- OLED Setup ----
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// ---- Pin Definitions ----
+#define IN1     27
+#define IN2     26
+#define ENA     14
+#define POT_PIN 34
+
+// ---- PWM Setup ----
+#define PWM_CHANNEL   0
+#define PWM_FREQ      1000   // 1kHz
+#define PWM_RESOLUTION 8     // 8-bit = 0 to 255
 
 void setup() {
   Serial.begin(115200);
-  WiFi.begin(ssid, password);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.println("Connecting...");
+  // Motor pins
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+
+  // Set motor direction (forward)
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+
+  // PWM setup
+  ledcSetup(PWM_CHANNEL, PWM_FREQ, PWM_RESOLUTION);
+  ledcAttachPin(ENA, PWM_CHANNEL);
+
+  // OLED init
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED not found!");
+    while (true);
   }
-
-  Serial.println("Connected to WiFi");
+  display.clearDisplay();
+  display.setTextColor(SSD1306_WHITE);
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.println("Motor Speed Control");
+  display.display();
+  delay(1500);
 }
 
 void loop() {
+  // Read potentiometer (0 - 4095)
+  int potValue = analogRead(POT_PIN);
+
+  // Map to PWM duty cycle (0 - 255)
+  int pwmValue = map(potValue, 0, 4095, 0, 255);
+
+  // Map to percentage for display (0 - 100%)
+  int speedPercent = map(potValue, 0, 4095, 0, 100);
+
+  // Apply PWM to motor
+  ledcWrite(PWM_CHANNEL, pwmValue);
+
+  // Update OLED
+  display.clearDisplay();
+
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  display.println("  Motor Speed Control");
+  display.drawLine(0, 10, 127, 10, SSD1306_WHITE);
+
+  display.setTextSize(2);
+  display.setCursor(30, 20);
+  display.print(speedPercent);
+  display.print(" %");
+
+  display.setTextSize(1);
+  display.setCursor(0, 48);
+  display.print("PWM: ");
+  display.print(pwmValue);
+  display.print("  RAW: ");
+  display.print(potValue);
+
+  display.display();
+
+  delay(100);
 }`
 
 const projects: Record<string, Project> = {
@@ -123,28 +191,115 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
         {tab === "pinout" && (
           <section className="space-y-6 max-w-5xl">
-            <h2 className="text-xl font-semibold">ESP32 Pinout</h2>
+            <h2 className="text-xl font-semibold">Wiring Connections</h2>
 
-            <div className="border border-border rounded-lg bg-secondary flex items-center justify-center h-[400px]">
-              <span className="text-muted-foreground">[ Text Placeholder for ESP32 Pinout ]</span>
+            <div className="border border-border rounded-lg overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-secondary text-secondary-foreground">
+                  <tr>
+                    <th className="px-4 py-3 font-medium">Component</th>
+                    <th className="px-4 py-3 font-medium">ESP32 / Source</th>
+                    <th className="px-4 py-3 font-medium">Component Pin</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {/* OLED Display */}
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-foreground">0.96" OLED Display</td>
+                    <td className="px-4 py-3">3V3</td>
+                    <td className="px-4 py-3">VCC</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">GND</td>
+                    <td className="px-4 py-3">GND</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 22</td>
+                    <td className="px-4 py-3">SCL / SCK</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 21</td>
+                    <td className="px-4 py-3">SDA</td>
+                  </tr>
+
+                  {/* 10k Trim Pot */}
+                  <tr className="border-t-2 border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">10k Trim Potentiometer</td>
+                    <td className="px-4 py-3">3V3</td>
+                    <td className="px-4 py-3">Left Leg</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 34</td>
+                    <td className="px-4 py-3">Middle</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">GND</td>
+                    <td className="px-4 py-3">Right Leg</td>
+                  </tr>
+
+                  {/* L298N */}
+                  <tr className="border-t-2 border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">L298N Motor Driver</td>
+                    <td className="px-4 py-3">Pin 27</td>
+                    <td className="px-4 py-3">IN1</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 26</td>
+                    <td className="px-4 py-3">IN2</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 14</td>
+                    <td className="px-4 py-3">ENA</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">GND</td>
+                    <td className="px-4 py-3">GND</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">VIN / 5V</td>
+                    <td className="px-4 py-3">5V</td>
+                  </tr>
+
+                  {/* Battery */}
+                  <tr className="border-t-2 border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">6V External Battery</td>
+                    <td className="px-4 py-3">+ve Battery</td>
+                    <td className="px-4 py-3">12V (on L298N)</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">-ve Battery</td>
+                    <td className="px-4 py-3">GND (on L298N)</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <div className="pt-8 space-y-6">
               <h2 className="text-xl font-semibold">Circuit Wiring</h2>
 
-            <div className="border border-border rounded-lg overflow-hidden">
-              <Image
-                src="https://picsum.photos/seed/circuitdiagram/1100/650"
-                alt="Circuit diagram"
-                width={1100}
-                height={650}
-                className="object-cover w-full"
-              />
-            </div>
+              <div className="border border-border rounded-lg overflow-hidden">
+                <Image
+                  src="https://picsum.photos/seed/circuitdiagram/1100/650"
+                  alt="Circuit diagram"
+                  width={1100}
+                  height={650}
+                  className="object-cover w-full"
+                />
+              </div>
 
-            <p className="text-muted-foreground">
-              The wiring diagram illustrates how sensors and relays are connected to the ESP32 GPIO pins.
-            </p>
+              <p className="text-muted-foreground">
+                The wiring diagram illustrates how the OLED display, potentiometer, and motor driver are connected to the ESP32.
+              </p>
             </div>
           </section>
         )}
