@@ -4,8 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Roti Canai",
-  description: "Built with Rotican.ai",
+  title: "ESP32 Lab",
+  description: "Embedded Systems and IoT Portfolio by Danish Iman",
 };
 
 export default function RootLayout({
