@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #0b0f12;
+  --foreground: #e6f1f4;
+
+  --card: #11171b;
+  --card-foreground: #e6f1f4;
+
+  --popover: #11171b;
+  --popover-foreground: #e6f1f4;
+
+  --primary: #00e5a8;
+  --primary-foreground: #02261c;
+
+  --secondary: #0f1c22;
+  --secondary-foreground: #d7f9ef;
+
+  --muted: #0f1c22;
+  --muted-foreground: #7fa3ad;
+
+  --accent: #00c2ff;
+  --accent-foreground: #01222c;
+
+  --destructive: #ef4444;
+
+  --border: #1c2a31;
+  --input: #1c2a31;
+  --ring: #00e5a8;
+}
+
+.dark {
+  --background: #0b0f12;
+  --foreground: #e6f1f4;
+
+  --card: #11171b;
+  --card-foreground: #e6f1f4;
+
+  --popover: #11171b;
+  --popover-foreground: #e6f1f4;
+
+  --primary: #00e5a8;
+  --primary-foreground: #02261c;
+
+  --secondary: #0f1c22;
+  --secondary-foreground: #d7f9ef;
+
+  --muted: #0f1c22;
+  --muted-foreground: #7fa3ad;
+
+  --accent: #00c2ff;
+  --accent-foreground: #01222c;
+
+  --destructive: #ef4444;
+
+  --border: #1c2a31;
+  --input: #1c2a31;
+  --ring: #00e5a8;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", system-ui, sans-serif;
+}
