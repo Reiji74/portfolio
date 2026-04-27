@@ -34,15 +34,15 @@ void loop() {
 }`
 
 const projects: Record<string, Project> = {
-  "esp32-smart-home": {
-    title: "ESP32 Smart Home Controller",
-    description: "ESP32 IoT automation controller.",
+  "fscp": {
+    title: "Controlling speed of a DC motor",
+    description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
     image: "https://picsum.photos/seed/smarthome/1200/700",
   },
 }
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = projects[params.id] ?? projects["esp32-smart-home"]
+  const project = projects[params.id] ?? projects["fscp"]
 
   const [tab, setTab] = useState<"overview" | "pinout" | "wiring" | "code" | "files">("overview")
 
