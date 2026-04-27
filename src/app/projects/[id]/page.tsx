@@ -280,6 +280,18 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     <td className="px-4 py-3">-ve Battery</td>
                     <td className="px-4 py-3">GND (on L298N)</td>
                   </tr>
+
+                  {/* DC Motor */}
+                  <tr className="border-t-2 border-border">
+                    <td className="px-4 py-3 font-medium text-foreground">DC Motor</td>
+                    <td className="px-4 py-3">OUT1 (on L298N)</td>
+                    <td className="px-4 py-3">Motor Terminal 1</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">OUT2 (on L298N)</td>
+                    <td className="px-4 py-3">Motor Terminal 2</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
