@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Github, ExternalLink, Cpu, Mail } from "lucide-react"
+import { Cpu, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -22,8 +22,6 @@ const projects = [
     description: "Environmental monitoring station measuring temperature, humidity, and air pressure with web dashboard.",
     tech: ["ESP32", "DHT22", "BME280", "IoT"],
     image: "https://picsum.photos/seed/weatherstation/600/400",
-    github: "#",
-    demo: "#",
   },
   {
     slug: "esp32-security-camera",
@@ -31,8 +29,6 @@ const projects = [
     description: "ESP32-CAM based surveillance system with live streaming and motion detection alerts.",
     tech: ["ESP32-CAM", "WiFi", "C++"],
     image: "https://picsum.photos/seed/securitycam/600/400",
-    github: "#",
-    demo: "#",
   },
 ]
 
@@ -140,24 +136,6 @@ export default function Home() {
                         {t}
                       </span>
                     ))}
-                  </div>
-
-                  <div className="flex gap-3">
-                    <a
-                      href={project.github}
-                      className="inline-flex items-center text-sm text-primary hover:underline"
-                    >
-                      <Github className="h-4 w-4 mr-1" aria-hidden="true" />
-                      Code
-                    </a>
-
-                    <a
-                      href={project.demo}
-                      className="inline-flex items-center text-sm text-accent hover:underline"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-1" aria-hidden="true" />
-                      Demo
-                    </a>
                   </div>
                 </CardContent>
               </Card>
