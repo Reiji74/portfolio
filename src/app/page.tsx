@@ -9,13 +9,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 
 const projects = [
   {
-    slug: "esp32-smart-home",
-    title: "ESP32 Smart Home Controller",
-    description: "WiFi-based home automation system to control lights and appliances using a mobile dashboard.",
-    tech: ["ESP32", "MQTT", "Arduino", "React"],
+    slug: "fscp",
+    title: "Controlling speed of a DC motor",
+    description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with a web interface for real-time adjustments.",
+    tech: ["ESP32", "DC Motor", "0.96 Inch OLED", "React"],
     image: "https://picsum.photos/seed/esp32home/600/400",
-    github: "#",
-    demo: "#",
   },
   {
     slug: "esp32-weather-station",
