@@ -1,13 +1,13 @@
 [
   {
     "route": "/projects/[id]",
-    "firstLoadUncompressedJsBytes": 1269682,
+    "firstLoadUncompressedJsBytes": 1272158,
     "firstLoadChunkPaths": [
       ".next\\static\\chunks\\01xlw8hd842-c.js",
-      ".next\\static\\chunks\\0n120cvn2ej4a.js",
-      ".next\\static\\chunks\\021kbv6dly2~d.js",
+      ".next\\static\\chunks\\0f2wxz0nx~cq3.js",
+      ".next\\static\\chunks\\0n~cg0tqztwe5.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
-      ".next\\static\\chunks\\0nuxva.vo3v84.js",
+      ".next\\static\\chunks\\0360_gqwma.th.js",
       ".next\\static\\chunks\\0fqyoybhmcjix.js",
       ".next\\static\\chunks\\0-obydqvt5vml.js",
       ".next\\static\\chunks\\0dgq26a5_oy.a.js",
@@ -18,14 +18,14 @@
   },
   {
     "route": "/",
-    "firstLoadUncompressedJsBytes": 623234,
+    "firstLoadUncompressedJsBytes": 625710,
     "firstLoadChunkPaths": [
       ".next\\static\\chunks\\01xlw8hd842-c.js",
-      ".next\\static\\chunks\\0n120cvn2ej4a.js",
-      ".next\\static\\chunks\\021kbv6dly2~d.js",
+      ".next\\static\\chunks\\0f2wxz0nx~cq3.js",
+      ".next\\static\\chunks\\0n~cg0tqztwe5.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\07drsbjpsvuu9.js",
-      ".next\\static\\chunks\\15ukc2zsc9s.b.js",
+      ".next\\static\\chunks\\0ot5o4_iexaq-.js",
       ".next\\static\\chunks\\0-obydqvt5vml.js",
       ".next\\static\\chunks\\0dgq26a5_oy.a.js",
       ".next\\static\\chunks\\10~x95jhs6ns3.js",
@@ -35,11 +35,11 @@
   },
   {
     "route": "/_not-found",
-    "firstLoadUncompressedJsBytes": 587853,
+    "firstLoadUncompressedJsBytes": 591298,
     "firstLoadChunkPaths": [
       ".next\\static\\chunks\\01xlw8hd842-c.js",
-      ".next\\static\\chunks\\0n120cvn2ej4a.js",
-      ".next\\static\\chunks\\021kbv6dly2~d.js",
+      ".next\\static\\chunks\\0f2wxz0nx~cq3.js",
+      ".next\\static\\chunks\\0n~cg0tqztwe5.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\0-obydqvt5vml.js",
       ".next\\static\\chunks\\0dgq26a5_oy.a.js",
