@@ -125,14 +125,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <section className="space-y-6 max-w-5xl">
             <h2 className="text-xl font-semibold">ESP32 Pinout</h2>
 
-            <div className="border border-border rounded-lg overflow-hidden">
-              <Image
-                src="https://picsum.photos/seed/esp32pinout/1100/650"
-                alt="ESP32 Pinout"
-                width={1100}
-                height={650}
-                className="object-cover w-full"
-              />
+            <div className="border border-border rounded-lg bg-secondary flex items-center justify-center h-[400px]">
+              <span className="text-muted-foreground">[ Text Placeholder for ESP32 Pinout ]</span>
             </div>
 
             <div className="pt-8 space-y-6">
