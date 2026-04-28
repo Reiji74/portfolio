@@ -42,20 +42,20 @@ export default function Home() {
           <div className="font-semibold tracking-tight">ESP32 Lab</div>
 
           <nav className="flex items-center gap-8 text-sm">
-            <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors duration-150">
+            <a href="#projects" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
               Projects
             </a>
-            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors duration-150">
+            <a href="#about" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
               About
             </a>
-            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors duration-150">
+            <a href="#contact" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
               Contact
             </a>
           </nav>
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button className="bg-[#BDD99F] text-black hover:bg-[#BDD99F]/90">
               GitHub
             </Button>
           </div>
@@ -67,15 +67,15 @@ export default function Home() {
 
         <section className="grid gap-10 lg:grid-cols-2 items-center">
           <div className="space-y-6 max-w-xl">
-            <p className="text-sm text-primary font-medium tracking-wider">Embedded Systems Portfolio</p>
+            <p className="text-sm text-[#f5b1aa] font-medium tracking-wider">Embedded Systems Portfolio</p>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              ESP32 Projects by <span className="text-primary">Danish Iman</span>
+              ESP32 Projects by <span className="text-[#BDD99F]">Danish Iman</span>
             </h1>
             <p className="text-muted-foreground text-lg">
               I build IoT and embedded systems using ESP32. This dashboard showcases hardware builds, firmware experiments, and connected applications.
             </p>
 
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button className="bg-[#BDD99F] text-black hover:bg-[#BDD99F]/90">
               Explore Projects
             </Button>
           </div>
@@ -99,7 +99,7 @@ export default function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {projects.map((project) => (
-              <Card key={project.slug} className="bg-card border-border hover:border-primary/60 transition-colors duration-150">
+              <Card key={project.slug} className="bg-card border-border hover:border-[#BDD99F]/60 transition-colors duration-150">
 
                 <Link href={`/projects/${project.slug}`} className="block">
                   <div className="aspect-video relative overflow-hidden">
@@ -117,7 +117,7 @@ export default function Home() {
                   <CardTitle className="text-lg">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="hover:text-primary transition-colors duration-150"
+                      className="hover:text-[#BDD99F] transition-colors duration-150"
                     >
                       {project.title}
                     </Link>
@@ -131,7 +131,7 @@ export default function Home() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-md"
+                        className="text-xs bg-[#f5b1aa] text-black px-2 py-1 rounded-md"
                       >
                         {t}
                       </span>
@@ -157,7 +157,7 @@ export default function Home() {
               {["ESP32", "Arduino", "C++", "IoT", "MQTT", "WiFi", "React", "Node.js"].map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-md"
+                  className="px-3 py-1 text-sm bg-[#f5b1aa] text-black rounded-md"
                 >
                   {skill}
                 </span>
@@ -172,7 +172,7 @@ export default function Home() {
             Interested in collaborating or discussing embedded systems projects? Feel free to reach out.
           </p>
 
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button className="bg-[#BDD99F] text-black hover:bg-[#BDD99F]/90">
             <Mail className="mr-2 h-4 w-4" /> Contact Me
           </Button>
         </section>
@@ -180,7 +180,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-border py-6 px-6 text-sm text-muted-foreground flex items-center justify-between">
-        <p>© {new Date().getFullYear()} Your Name</p>
+        <p>© {new Date().getFullYear()} Danish Iman</p>
         <div className="flex items-center gap-4">
           <Cpu className="h-4 w-4" /> ESP32 Portfolio
         </div>
