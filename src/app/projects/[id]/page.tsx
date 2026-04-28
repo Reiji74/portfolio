@@ -106,7 +106,7 @@ const projects: Record<string, Project> = {
   "fscp": {
     title: "Controlling speed of a DC motor",
     description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
-    image: "https://picsum.photos/seed/smarthome/1200/700",
+    image: "/IMG_20260428_143233.jpg",
   },
 }
 
@@ -301,7 +301,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
               <div className="border border-border rounded-lg overflow-hidden">
                 <Image
-                  src="https://picsum.photos/seed/circuitdiagram/1100/650"
+                  src="/Untitled Sketch_bb.png"
                   alt="Circuit diagram"
                   width={1100}
                   height={650}

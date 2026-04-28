@@ -14,7 +14,7 @@ const projects = [
     title: "Controlling speed of a DC motor",
     description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
     tech: ["ESP32", "DC Motor", "0.96 Inch OLED","L298N Motor Driver", "10K Trim Potentiometer", "React"],
-    image: "https://picsum.photos/seed/esp32home/600/400",
+    image: "/IMG_20260428_143233.jpg",
   },
   {
     slug: "esp32-weather-station",
@@ -81,7 +81,7 @@ export default function Home() {
 
           <div className="relative aspect-video rounded-lg overflow-hidden border border-border">
             <Image
-              src="https://picsum.photos/seed/esp32board/900/550"
+              src="/my-profile.png"
               alt="ESP32 development board"
               width={900}
               height={550}
