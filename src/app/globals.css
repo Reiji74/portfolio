@@ -30,13 +30,13 @@
 :root {
   --radius: 0.75rem;
 
-  --background: #ffffff;
+  --background: #f7f6f3;
   --foreground: #0b0f12;
 
-  --card: #ffffff;
+  --card: #fdfcfb;
   --card-foreground: #0b0f12;
 
-  --popover: #ffffff;
+  --popover: #fdfcfb;
   --popover-foreground: #0b0f12;
 
   --primary: #00e5a8;
