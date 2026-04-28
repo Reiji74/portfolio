@@ -42,13 +42,13 @@ export default function Home() {
           <div className="font-semibold tracking-tight">ESP32 Lab</div>
 
           <nav className="flex items-center gap-8 text-sm">
-            <a href="#projects" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
+            <a href="#projects" className="text-muted-foreground hover:text-[#f5b1aa] transition-colors duration-150">
               Projects
             </a>
-            <a href="#about" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
+            <a href="#about" className="text-muted-foreground hover:text-[#f5b1aa] transition-colors duration-150">
               About
             </a>
-            <a href="#contact" className="text-muted-foreground hover:text-[#BDD99F] transition-colors duration-150">
+            <a href="#contact" className="text-muted-foreground hover:text-[#f5b1aa] transition-colors duration-150">
               Contact
             </a>
           </nav>
