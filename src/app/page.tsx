@@ -65,8 +65,8 @@ export default function Home() {
 
       <main className="flex-1 w-full px-6 py-10 space-y-16">
 
-        <section className="grid gap-10 lg:grid-cols-2 items-center">
-          <div className="space-y-6 max-w-xl">
+        <section className="flex flex-col justify-center py-6">
+          <div className="space-y-6 max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               ESP32 Projects by <span className="text-[#BDD99F]">Danish Iman</span>
             </h1>
@@ -77,17 +77,6 @@ export default function Home() {
             <Button className="bg-[#BDD99F] text-black hover:bg-[#BDD99F]/90">
               Explore Projects
             </Button>
-          </div>
-
-          <div className="relative aspect-video rounded-lg overflow-hidden border border-border">
-            <Image
-              src="/my-profile.png"
-              alt="ESP32 development board"
-              width={900}
-              height={550}
-              className="object-cover w-full h-full"
-              priority
-            />
           </div>
         </section>
 

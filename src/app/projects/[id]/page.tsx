@@ -105,7 +105,7 @@ void loop() {
 const projects: Record<string, Project> = {
   "fscp": {
     title: "Controlling speed of a DC motor",
-    description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
+    description: "Danish Iman's first project, using ESP32 and VSCode PlatformIO controlling speed of a DC motorntrolling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
     image: "/IMG_20260428_143233.jpg",
   },
 }
@@ -113,7 +113,7 @@ const projects: Record<string, Project> = {
 export default function ProjectPage({ params }: { params: { id: string } }) {
   const project = projects[params.id] ?? projects["fscp"]
 
-  const [tab, setTab] = useState<"overview" | "pinout" | "code" | "files">("overview")
+  const [tab, setTab] = useState<"overview" | "pinout" | "code">("overview")
 
   function copyCode() {
     navigator.clipboard.writeText(codeExample)
@@ -141,10 +141,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
               <button onClick={() => setTab("code")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "code" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
                 Code
-              </button>
-
-              <button onClick={() => setTab("files")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "files" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
-                Files
               </button>
             </nav>
             <ThemeToggle />
@@ -340,31 +336,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               >
                 {codeExample}
               </SyntaxHighlighter>
-
-            </div>
-          </section>
-        )}
-
-        {tab === "files" && (
-          <section className="space-y-4 max-w-3xl">
-            <h2 className="text-xl font-semibold">Project Files</h2>
-
-            <div className="border border-border rounded-lg divide-y divide-border">
-
-              <div className="px-4 py-3 flex items-center justify-between">
-                <span className="text-sm">main.cpp</span>
-                <span className="text-xs text-muted-foreground">Firmware</span>
-              </div>
-
-              <div className="px-4 py-3 flex items-center justify-between">
-                <span className="text-sm">config.h</span>
-                <span className="text-xs text-muted-foreground">Configuration</span>
-              </div>
-
-              <div className="px-4 py-3 flex items-center justify-between">
-                <span className="text-sm">diagram.png</span>
-                <span className="text-xs text-muted-foreground">Circuit</span>
-              </div>
 
             </div>
           </section>
