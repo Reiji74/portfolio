@@ -125,25 +125,25 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       <header className="border-b border-border bg-card">
         <div className="w-full px-6 h-14 flex items-center justify-between">
 
-          <Link href="/" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+          <Link href="/" className="flex items-center text-sm text-muted-foreground hover:text-[#f5b1aa] transition-colors">
             <ArrowLeft className="h-4 w-4 mr-2" /> Back
           </Link>
 
           <div className="flex items-center gap-6">
             <nav className="flex items-center gap-8 text-sm">
-              <button onClick={() => setTab("overview")} className={`hover:text-primary ${tab === "overview" ? "text-primary" : "text-muted-foreground"}`}>
+              <button onClick={() => setTab("overview")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "overview" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
                 Overview
               </button>
 
-              <button onClick={() => setTab("pinout")} className={`hover:text-primary ${tab === "pinout" ? "text-primary" : "text-muted-foreground"}`}>
+              <button onClick={() => setTab("pinout")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "pinout" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
                 Wiring / Pinout
               </button>
 
-              <button onClick={() => setTab("code")} className={`hover:text-primary ${tab === "code" ? "text-primary" : "text-muted-foreground"}`}>
+              <button onClick={() => setTab("code")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "code" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
                 Code
               </button>
 
-              <button onClick={() => setTab("files")} className={`hover:text-primary ${tab === "files" ? "text-primary" : "text-muted-foreground"}`}>
+              <button onClick={() => setTab("files")} className={`hover:text-[#f5b1aa] transition-colors ${tab === "files" ? "text-[#BDD99F]" : "text-muted-foreground"}`}>
                 Files
               </button>
             </nav>
@@ -327,7 +327,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
                 <button
                   onClick={copyCode}
-                  className="flex items-center gap-1 text-muted-foreground hover:text-primary"
+                  className="flex items-center gap-1 text-muted-foreground hover:text-[#f5b1aa] transition-colors"
                 >
                   <Copy className="h-4 w-4" /> Copy
                 </button>

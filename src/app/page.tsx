@@ -67,7 +67,6 @@ export default function Home() {
 
         <section className="grid gap-10 lg:grid-cols-2 items-center">
           <div className="space-y-6 max-w-xl">
-            <p className="text-sm text-[#f5b1aa] font-medium tracking-wider">Embedded Systems Portfolio</p>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               ESP32 Projects by <span className="text-[#BDD99F]">Danish Iman</span>
             </h1>
