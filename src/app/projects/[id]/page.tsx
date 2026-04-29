@@ -108,6 +108,16 @@ const projects: Record<string, Project> = {
     description: "A compact hardware project featuring an ESP32 that translates analog potentiometer signals into precise motor speeds. This project showcases I2C peripheral integration, PWM signal generation, and real-time data feedback on a 0.96” OLED screen.",
     image: "/IMG_20260428_143233.jpg",
   },
+  "esp32-media-streamer": {
+    title: "ESP32 Synchronized Dual-Display Media Streamer",
+    description: "A media streamer that plays video on an OLED screen synchronized with audio streamed to a Bluetooth speaker, using a secondary LCD for status updates.",
+    image: "/IMG_20260429_120030.jpg",
+  },
+  "esp32-security-camera": {
+    title: "ESP32 Security Camera",
+    description: "ESP32-CAM based surveillance system with live streaming and motion detection alerts.",
+    image: "https://picsum.photos/seed/securitycam/600/400",
+  },
 }
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
