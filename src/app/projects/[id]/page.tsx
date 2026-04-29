@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, use } from "react"
 import { ArrowLeft, Copy } from "lucide-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
@@ -120,8 +120,9 @@ const projects: Record<string, Project> = {
   },
 }
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = projects[params.id] ?? projects["fscp"]
+export default function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
+  const project = projects[id] ?? projects["fscp"]
 
   const [tab, setTab] = useState<"overview" | "pinout" | "code">("overview")
 
