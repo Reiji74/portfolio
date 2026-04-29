@@ -204,94 +204,48 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
-                  {/* OLED Display */}
+                  {/* I2C LCD Display */}
                   <tr>
-                    <td className="px-4 py-3 font-medium text-foreground">0.96" OLED Display</td>
-                    <td className="px-4 py-3">3V3</td>
+                    <td className="px-4 py-3 font-medium text-foreground">I2C LCD Display</td>
+                    <td className="px-4 py-3">GND</td>
+                    <td className="px-4 py-3">GND</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">VIN</td>
                     <td className="px-4 py-3">VCC</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">GND</td>
-                    <td className="px-4 py-3">GND</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">Pin 22</td>
-                    <td className="px-4 py-3">SCL / SCK</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3"></td>
                     <td className="px-4 py-3">Pin 21</td>
                     <td className="px-4 py-3">SDA</td>
                   </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
+                    <td className="px-4 py-3">Pin 22</td>
+                    <td className="px-4 py-3">SCL / SCK</td>
+                  </tr>
 
-                  {/* 10k Trim Pot */}
+                  {/* OLED Display */}
                   <tr className="border-t-2 border-border">
-                    <td className="px-4 py-3 font-medium text-foreground">10k Trim Potentiometer</td>
+                    <td className="px-4 py-3 font-medium text-foreground">OLED Display</td>
+                    <td className="px-4 py-3">GND</td>
+                    <td className="px-4 py-3">GND</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3"></td>
                     <td className="px-4 py-3">3V3</td>
-                    <td className="px-4 py-3">Left Leg</td>
+                    <td className="px-4 py-3">VCC</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">Pin 34</td>
-                    <td className="px-4 py-3">Middle</td>
+                    <td className="px-4 py-3">Pin 21</td>
+                    <td className="px-4 py-3">SDA</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">GND</td>
-                    <td className="px-4 py-3">Right Leg</td>
-                  </tr>
-
-                  {/* L298N */}
-                  <tr className="border-t-2 border-border">
-                    <td className="px-4 py-3 font-medium text-foreground">L298N Motor Driver</td>
-                    <td className="px-4 py-3">Pin 27</td>
-                    <td className="px-4 py-3">IN1</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">Pin 26</td>
-                    <td className="px-4 py-3">IN2</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">Pin 14</td>
-                    <td className="px-4 py-3">ENA</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">GND</td>
-                    <td className="px-4 py-3">GND</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">VIN / 5V</td>
-                    <td className="px-4 py-3">5V</td>
-                  </tr>
-
-                  {/* Battery */}
-                  <tr className="border-t-2 border-border">
-                    <td className="px-4 py-3 font-medium text-foreground">6V External Battery</td>
-                    <td className="px-4 py-3">+ve Battery</td>
-                    <td className="px-4 py-3">12V (on L298N)</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">-ve Battery</td>
-                    <td className="px-4 py-3">GND (on L298N)</td>
-                  </tr>
-
-                  {/* DC Motor */}
-                  <tr className="border-t-2 border-border">
-                    <td className="px-4 py-3 font-medium text-foreground">DC Motor</td>
-                    <td className="px-4 py-3">OUT1 (on L298N)</td>
-                    <td className="px-4 py-3">Motor Terminal 1</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3"></td>
-                    <td className="px-4 py-3">OUT2 (on L298N)</td>
-                    <td className="px-4 py-3">Motor Terminal 2</td>
+                    <td className="px-4 py-3">Pin 22</td>
+                    <td className="px-4 py-3">SCL / SCK</td>
                   </tr>
                 </tbody>
               </table>
