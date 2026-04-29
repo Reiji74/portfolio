@@ -18,12 +18,12 @@ const projects = [
     difficulty: "Medium",
   },
   {
-    slug: "esp32-weather-station",
-    title: "ESP32 Weather Station",
-    description: "Environmental monitoring station measuring temperature, humidity, and air pressure with web dashboard.",
-    tech: ["ESP32", "DHT22", "BME280", "IoT"],
-    image: "https://picsum.photos/seed/weatherstation/600/400",
-    difficulty: "Easy",
+    slug: "esp32-media-streamer",
+    title: "ESP32 Synchronized Dual-Display Media Streamer",
+    description: "A media streamer that plays video on an OLED screen synchronized with audio streamed to a Bluetooth speaker, using a secondary LCD for status updates.",
+    tech: ["ESP32", "I2C LCD 20x4", "OLED", "Bluetooth A2DP", "LittleFS", "FreeRTOS"],
+    image: "/IMG_20260429_120030.jpg",
+    difficulty: "Hard",
   },
   {
     slug: "esp32-security-camera",
