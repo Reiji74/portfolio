@@ -105,7 +105,7 @@ void loop() {
 const projects: Record<string, Project> = {
   "fscp": {
     title: "Controlling speed of a DC motor",
-    description: "Danish Iman's first project, using ESP32 and VSCode PlatformIO controlling speed of a DC motorntrolling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
+    description: "A compact hardware project featuring an ESP32 that translates analog potentiometer signals into precise motor speeds. This project showcases I2C peripheral integration, PWM signal generation, and real-time data feedback on a 0.96” OLED screen.",
     image: "/IMG_20260428_143233.jpg",
   },
 }
@@ -162,13 +162,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <div className="space-y-4">
               <h2 className="text-xl font-semibold">Project Overview</h2>
               <p className="text-muted-foreground">
-                This project demonstrates an ESP32‑based IoT system capable of connecting to WiFi,
-                communicating with sensors, and controlling devices remotely.
-              </p>
-
-              <p className="text-muted-foreground">
-                The ESP32 acts as the main controller while connected peripherals handle sensing
-                and actuation.
+                A compact hardware project featuring an ESP32 that translates analog potentiometer signals into precise motor speeds. This project showcases I2C peripheral integration, PWM signal generation, and real-time data feedback on a 0.96” OLED screen.
               </p>
             </div>
 

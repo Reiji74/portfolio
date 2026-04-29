@@ -12,9 +12,10 @@ const projects = [
   {
     slug: "fscp",
     title: "Controlling speed of a DC motor",
-    description: "Controlling speed of a DC motor using ESP32 and VSCode PlatformIO with for real-time adjustments.",
+    description: "A compact hardware project featuring an ESP32 that translates analog potentiometer signals into precise motor speeds. This project showcases I2C peripheral integration, PWM signal generation, and real-time data feedback on a 0.96” OLED screen.",
     tech: ["ESP32", "DC Motor", "0.96 Inch OLED","L298N Motor Driver", "10K Trim Potentiometer", "React"],
     image: "/IMG_20260428_143233.jpg",
+    difficulty: "Medium",
   },
   {
     slug: "esp32-weather-station",
@@ -22,6 +23,7 @@ const projects = [
     description: "Environmental monitoring station measuring temperature, humidity, and air pressure with web dashboard.",
     tech: ["ESP32", "DHT22", "BME280", "IoT"],
     image: "https://picsum.photos/seed/weatherstation/600/400",
+    difficulty: "Easy",
   },
   {
     slug: "esp32-security-camera",
@@ -29,6 +31,7 @@ const projects = [
     description: "ESP32-CAM based surveillance system with live streaming and motion detection alerts.",
     tech: ["ESP32-CAM", "WiFi", "C++"],
     image: "https://picsum.photos/seed/securitycam/600/400",
+    difficulty: "Hard",
   },
 ]
 
@@ -102,6 +105,17 @@ export default function Home() {
                 </Link>
 
                 <CardHeader>
+                  <div className="mb-2">
+                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-sm ${
+                      project.difficulty === 'Easy' ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400' :
+                      project.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400' :
+                      project.difficulty === 'Hard' ? 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400' :
+                      'bg-muted text-muted-foreground'
+                    }`}>
+                      {project.difficulty}
+                    </span>
+                  </div>
+
                   <CardTitle className="text-lg">
                     <Link
                       href={`/projects/${project.slug}`}
@@ -142,7 +156,7 @@ export default function Home() {
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold">Skills</h2>
             <div className="flex flex-wrap gap-3">
-              {["ESP32", "Arduino", "C++", "IoT", "MQTT", "WiFi", "React", "Node.js"].map((skill) => (
+              {["ESP32", "Arduino", "IoT", "WiFi", "React"].map((skill) => (
                 <span
                   key={skill}
                   className="px-3 py-1 text-sm bg-[#f5b1aa] text-black rounded-md"
