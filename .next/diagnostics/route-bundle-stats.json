@@ -1,14 +1,14 @@
 [
   {
     "route": "/projects/[id]",
-    "firstLoadUncompressedJsBytes": 1277139,
+    "firstLoadUncompressedJsBytes": 1275304,
     "firstLoadChunkPaths": [
       ".next\\static\\chunks\\01xlw8hd842-c.js",
       ".next\\static\\chunks\\0f2wxz0nx~cq3.js",
       ".next\\static\\chunks\\0n~cg0tqztwe5.js",
       ".next\\static\\chunks\\0d3shmwh5_nmn.js",
       ".next\\static\\chunks\\0g7oaglcmaq4v.js",
-      ".next\\static\\chunks\\0k4e90o-a8xas.js",
+      ".next\\static\\chunks\\0w.jfiq--.h_0.js",
       ".next\\static\\chunks\\0-obydqvt5vml.js",
       ".next\\static\\chunks\\0dgq26a5_oy.a.js",
       ".next\\static\\chunks\\10~x95jhs6ns3.js",

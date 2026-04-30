@@ -1,0 +1,4 @@
+adafruit/Adafruit GFX Library @ ^1.11.5
+https://github.com/pschatzmann/ESP32-A2DP
+adafruit/Adafruit SSD1306 @ ^2.5.7
+marcoschwartz/LiquidCrystal_I2C @ ^1.1.4
