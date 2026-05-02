@@ -25,6 +25,9 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+  --font-gotham: var(--font-gotham), sans-serif;
+  --font-balk: var(--font-balk), sans-serif;
+  --font-gotham-book: var(--font-gotham-book), sans-serif;
 }
 
 :root {
