@@ -27,11 +27,11 @@ const projects = [
   },
   {
     slug: "esp32-security-camera",
-    title: "ESP32 Security Camera",
-    description: "ESP32-CAM based surveillance system with live streaming and motion detection alerts.",
-    tech: ["ESP32-CAM", "WiFi", "C++"],
-    image: "https://picsum.photos/seed/securitycam/600/400",
-    difficulty: "Hard",
+    title: "ESP32 PC Stats Monitor",
+    description: "An ESP32-based hardware monitor that receives real-time PC statistics via a Python agent and displays them on an OLED and LCD screen.",
+    tech: ["ESP32", "Python", "I2C LCD 20x4", "OLED", "ArduinoJson"],
+    image: "/IMG_20260502_122212.jpg",
+    difficulty: "Medium",
   },
 ]
 
