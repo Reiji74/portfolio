@@ -14,9 +14,138 @@ export default function Home() {
   const [showAllProjects, setShowAllProjects] = React.useState(false);
   const displayedProjects = showAllProjects ? projects : projects.slice(0, INITIAL_PROJECTS);
 
+  // Loading screen states
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [showLoadingScreen, setShowLoadingScreen] = React.useState(true);
+  const [progress, setProgress] = React.useState(0);
+  const [text1, setText1] = React.useState("");
+  const [text2, setText2] = React.useState("");
+
+  React.useEffect(() => {
+    // Only play the loading animation once per browser session
+    if (sessionStorage.getItem("hasVisited")) {
+      setIsLoading(false);
+      setShowLoadingScreen(false);
+      return;
+    }
+    sessionStorage.setItem("hasVisited", "true");
+
+    const fullText1 = "loading...";
+    const fullText2 = "codename : develop";
+    
+    let type2Interval: ReturnType<typeof setInterval>;
+    let hideTimeout: ReturnType<typeof setTimeout>;
+
+    // progress bar animation
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 1;
+      });
+    }, 20); // 100 * 20 = 2000ms
+
+    // typewriter effect for text 1
+    let i = 0;
+    const type1Interval = setInterval(() => {
+      setText1(fullText1.slice(0, i + 1));
+      i++;
+      if (i >= fullText1.length) {
+        clearInterval(type1Interval);
+        // typewriter effect for text 2
+        let j = 0;
+        type2Interval = setInterval(() => {
+          setText2(fullText2.slice(0, j + 1));
+          j++;
+          if (j >= fullText2.length) {
+            clearInterval(type2Interval);
+          }
+        }, 50);
+      }
+    }, 50);
+
+    // hide loading screen after 2.5 seconds
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+      hideTimeout = setTimeout(() => setShowLoadingScreen(false), 500);
+    }, 2500);
+
+    return () => {
+      clearInterval(progressInterval);
+      clearInterval(type1Interval);
+      if (type2Interval) clearInterval(type2Interval);
+      clearTimeout(timeout);
+      if (hideTimeout) clearTimeout(hideTimeout);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isLoading]);
+
   return (
     <div className="bg-[#0041BA] dark:bg-[#1a2f54] text-slate-50 min-h-screen flex flex-col relative selection:bg-[#BDD99F]/30">
       
+      {/* Loading Screen Overlay */}
+      {showLoadingScreen && (
+        <div 
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0041BA] dark:bg-[#1a2f54] transition-opacity duration-500 ${isLoading ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <div className="fixed inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0"></div>
+          
+          {/* Windows-style Frame */}
+          <div className="w-[calc(100%-2rem)] max-w-md relative z-10 border-2 border-dashed border-slate-400/50 bg-[#0041BA]/80 dark:bg-[#1a2f54]/80 backdrop-blur-md shadow-2xl flex flex-col">
+            {/* Title Bar */}
+            <div className="flex items-center justify-between px-3 py-2 border-b-2 border-dashed border-slate-400/50 bg-slate-400/10 select-none">
+              <span className="text-xs font-mono text-slate-300 tracking-wider">system_loader.exe</span>
+              <div className="flex items-center gap-3 font-mono text-slate-300 text-sm">
+                <span className="cursor-not-allowed hover:text-white transition-colors leading-none">_</span>
+                <span className="cursor-not-allowed hover:text-white transition-colors leading-none">□</span>
+                <span className="cursor-not-allowed hover:text-red-400 transition-colors leading-none">×</span>
+              </div>
+            </div>
+
+            {/* Window Content */}
+            <div className="p-6 space-y-6">
+              <div className="font-mono text-sm md:text-base text-[#BDD99F] space-y-2 min-h-[3.5rem]">
+                <div>
+                  {text1}
+                  {text1.length > 0 && text2.length === 0 && (
+                    <span className="inline-block w-2 h-4 bg-[#BDD99F] animate-pulse ml-1 align-middle"></span>
+                  )}
+                </div>
+                <div>
+                  {text2}
+                  {text2.length > 0 && (
+                    <span className="inline-block w-2 h-4 bg-[#BDD99F] animate-pulse ml-1 align-middle"></span>
+                  )}
+                </div>
+              </div>
+              
+              <div className="w-full h-3 border border-dashed border-slate-400/50 relative">
+                <div 
+                  className="absolute top-0 left-0 h-full bg-[#f5b1aa] transition-all duration-75"
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+              
+              <div className="text-right text-xs font-mono text-[#f5b1aa]">
+                {progress}%
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Global Blueprint Grid Background */}
       <div className="fixed inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0"></div>
 
@@ -102,24 +231,31 @@ export default function Home() {
               <Card key={project.id} className="bg-[#0041BA]/60 dark:bg-[#1a2f54]/60 backdrop-blur-sm border-2 border-dashed border-slate-400/30 hover:border-slate-300 transition-all duration-300 rounded-none relative z-10 flex flex-col">
 
                 <Link href={`/projects/${project.id}`} className="block">
-                  <div className="aspect-video relative overflow-hidden border-b-2 border-dashed border-slate-400/30">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={600}
-                      height={400}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
-                      priority
-                    />
+                  <div className="aspect-video relative overflow-hidden border-b-2 border-dashed border-slate-400/30 bg-slate-100 dark:bg-[#11203c]">
+                    {project.image === "/placeholder.jpg" || !project.image ? (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="font-gotham font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Coming soon..</span>
+                      </div>
+                    ) : (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={600}
+                        height={400}
+                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                        priority
+                      />
+                    )}
                   </div>
                 </Link>
 
                 <CardHeader>
-                  <div className="mb-2 flex">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="text-[10px] font-gotham uppercase tracking-widest text-slate-300">Difficulty:</span>
                     <span className={`text-[10px] font-gotham uppercase tracking-widest font-bold px-2 py-1 border border-dashed rounded-none ${
-                      project.difficulty === 'Easy' ? 'border-green-500 text-green-600 bg-green-500/10 dark:text-green-400' :
-                      project.difficulty === 'Medium' ? 'border-yellow-500 text-yellow-600 bg-yellow-500/10 dark:text-yellow-400' :
-                      project.difficulty === 'Hard' ? 'border-red-500 text-red-600 bg-red-500/10 dark:text-red-400' :
+                      project.difficulty === 'Easy' ? 'border-green-400 text-green-300 bg-green-400/10 dark:border-green-500 dark:text-green-400' :
+                      project.difficulty === 'Medium' ? 'border-yellow-400 text-yellow-300 bg-yellow-400/10 dark:border-yellow-500 dark:text-yellow-400' :
+                      project.difficulty === 'Hard' ? 'border-red-400 text-red-300 bg-red-400/10 dark:border-red-500 dark:text-red-400' :
                       'border-slate-400 text-slate-300 bg-white/5'
                     }`}>
                       {project.difficulty}
@@ -143,12 +279,29 @@ export default function Home() {
                     {project.tech.map((t: string) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono uppercase tracking-wider border border-dashed border-[#405CB1] bg-[#405CB1]/20 text-slate-200 px-2 py-1 rounded-none"
+                        className="text-[10px] font-mono uppercase tracking-wider border border-dashed border-blue-300 bg-blue-300/20 text-white dark:border-[#405CB1] dark:bg-[#405CB1]/20 dark:text-slate-200 px-2 py-1 rounded-none"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
+                  
+                  {/* Render components if they exist in your project data */}
+                  {'components' in project && Array.isArray((project as any).components) && (project as any).components.length > 0 && (
+                    <div className="space-y-2">
+                      <span className="text-[10px] font-gotham uppercase tracking-widest text-slate-300">Components:</span>
+                      <div className="flex flex-wrap gap-2">
+                        {(project as any).components.map((c: string) => (
+                          <span
+                            key={c}
+                            className="text-[10px] font-mono uppercase tracking-wider border border-dashed border-[#BDD99F]/50 bg-[#BDD99F]/10 text-white dark:border-[#BDD99F]/40 dark:bg-[#BDD99F]/10 dark:text-[#BDD99F] px-2 py-1 rounded-none"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -181,7 +334,7 @@ export default function Home() {
               {["ESP32", "Arduino", "IoT", "WiFi", "React"].map((skill) => (
                 <span
                   key={skill}
-                  className="text-[10px] font-mono uppercase tracking-wider border border-dashed border-[#405CB1] bg-[#405CB1]/20 text-slate-200 px-3 py-1 rounded-none"
+                  className="text-[10px] font-mono uppercase tracking-wider border border-dashed border-blue-300 bg-blue-300/20 text-white dark:border-[#405CB1] dark:bg-[#405CB1]/20 dark:text-slate-200 px-3 py-1 rounded-none"
                 >
                   {skill}
                 </span>

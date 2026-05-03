@@ -59,8 +59,41 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
 
       <main className="flex-1 w-full px-6 py-10 space-y-10 relative z-10">
 
-        <header className="space-y-3 max-w-3xl">
+        <header className="space-y-5 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-gotham font-bold uppercase tracking-wider border-b-2 border-dashed border-slate-400/30 pb-4 inline-block">{project.title}</h1>
+          
+          <div className="flex flex-col gap-4">
+            {/* Difficulty Badge */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-gotham uppercase tracking-widest text-slate-300">Difficulty:</span>
+              <span className={`text-[10px] sm:text-xs font-gotham uppercase tracking-widest font-bold px-2 py-1 border border-dashed rounded-none ${
+                project.difficulty === 'Easy' ? 'border-green-400 text-green-300 bg-green-400/10 dark:border-green-500 dark:text-green-400' :
+                project.difficulty === 'Medium' ? 'border-yellow-400 text-yellow-300 bg-yellow-400/10 dark:border-yellow-500 dark:text-yellow-400' :
+                project.difficulty === 'Hard' ? 'border-red-400 text-red-300 bg-red-400/10 dark:border-red-500 dark:text-red-400' :
+                'border-slate-400 text-slate-300 bg-white/5'
+              }`}>
+                {project.difficulty}
+              </span>
+            </div>
+
+            {/* Components List */}
+            {'components' in project && Array.isArray((project as any).components) && (project as any).components.length > 0 && (
+              <div className="space-y-2">
+                <span className="text-xs font-gotham uppercase tracking-widest text-slate-300 block">Components:</span>
+                <div className="flex flex-wrap gap-2">
+                  {(project as any).components.map((c: string) => (
+                    <span
+                      key={c}
+                      className="text-[10px] sm:text-xs font-mono uppercase tracking-wider border border-dashed border-[#BDD99F]/50 bg-[#BDD99F]/10 text-white dark:border-[#BDD99F]/40 dark:bg-[#BDD99F]/10 dark:text-[#BDD99F] px-2 py-1 rounded-none"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           <p className="text-slate-300 font-gotham-book text-base leading-relaxed">{project.description}</p>
         </header>
 
@@ -76,15 +109,21 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
               )}
             </div>
 
-            <div className="border-2 border-dashed border-slate-400/30 bg-[#0041BA]/50 dark:bg-[#1a2f54]/50 backdrop-blur-sm p-2 rounded-none overflow-hidden cursor-zoom-in hover:border-slate-300 transition-colors duration-300 self-start" onClick={() => setZoomedImage(project.image)} onContextMenu={(e) => e.preventDefault()}>
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={900}
-                height={550}
-                className="object-cover w-full h-auto pointer-events-none"
-                priority
-              />
+            <div className={`border-2 border-dashed border-slate-400/30 bg-[#0041BA]/50 dark:bg-[#1a2f54]/50 backdrop-blur-sm p-2 rounded-none overflow-hidden hover:border-slate-300 transition-colors duration-300 self-start ${project.image === '/placeholder.jpg' || !project.image ? '' : 'cursor-zoom-in'}`} onClick={() => (project.image !== '/placeholder.jpg' && project.image) && setZoomedImage(project.image)} onContextMenu={(e) => e.preventDefault()}>
+              {project.image === '/placeholder.jpg' || !project.image ? (
+                <div className="w-full aspect-video bg-slate-100 dark:bg-[#11203c] flex items-center justify-center border border-dashed border-slate-400/30">
+                  <span className="font-gotham font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Coming soon..</span>
+                </div>
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={900}
+                  height={550}
+                  className="object-cover w-full h-auto pointer-events-none"
+                  priority
+                />
+              )}
             </div>
 
           </section>

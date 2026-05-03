@@ -204,8 +204,17 @@ export const project2: Project = {
   code: mediaStreamerCode,
   platformioIni: mediaStreamerPlatformIO,
   wiringDiagram: "/2nd project.png",
-  notes: `• note that OLED used is in black and white. 
+  notes: `Reminder : This project was started and developed on linux
+
+• note that OLED used is in black and white. 
 • The video must be dithered first. You may dither it at https://ditheringstudio.com/en/  
-• After the video was dithered, the converted video must changed into BIN file...
-• The original video was https://youtube.com/shorts/qFCnLxT-BO8`,
+• After the video was dithered, the converted video must changed into BIN file.
+• then the video converted by using ffmpeg (make sure you install it first) :
+ffmpeg -i ~/Downloads/exp/test.webm -vf "fps=20,scale=128:64,format=monob" -f rawvideo video.bin
+• The original video was https://youtube.com/shorts/qFCnLxT-BO8
+• Then the audio. Same as video, the audio file must be converted to BIN file.
+• The audio converted by using ffmpeg (make sure you install it first) :
+ffmpeg -i /home/build_blade/Downloads/cropped.mp4 -f s16le -acodec pcm_s16le -ar 22050 -ac 1 audio.bin
+• The audio file was converted become mono, and sampled at 22050 Hz to reduce the file size.
+• due to owner doesn't have external SD card, the owner decide to not using the audio bin file, but it still work on both screens.`,
 };
